@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: testsecret
     outputs:
-      output1: ${{step.step1.outputs.test}}
-      output2: ${{step.step2.outputs.test}}
+      output1: ${{steps.step1.outputs.test}}
+      output2: ${{steps.step2.outputs.test}}
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
