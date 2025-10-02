@@ -89,6 +89,34 @@ jobs:
         logout: true
     # Raw authentication to registries, defined as YAML objects
   #      registry-auth: xxxxxxxxxl
+
+  ####################################
+
+     - name: Docker build and push
+  # You may pin to the exact commit or the version.
+  # uses: cloudposse/github-action-docker-build-push@51728c18e98e68a3365054e724b186912d8cbe16
+       uses: cloudposse/github-action-docker-build-push@1.16.0
+       with:
+    # Working directory
+        workdir: ./
+    # Dockerfile name
+        file: Dockerfile
+    # List of build-time variables
+#        build-args: # optional
+    # Organization
+        organization: isuruwic
+    # Repository
+        repository: gcloudkubectl
+    # Docker registry
+        registry: hub.docker.com
+    # Docker login
+        login: isuruwic
+    # Docker password
+        password: ${{ secrets.DOCKERTOKEN }}
+    # List of tags (supports https://github.com/docker/metadata-action#tags-input)
+        tags: ubuntu
+   
+          
           
     
 
