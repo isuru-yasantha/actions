@@ -70,5 +70,7 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: echo "This is terraform secret ${{ secrets.MYSECRET-testsecret }}"
+      env:
+        TEST: ${{ secrets.MYSECRET-testsecret }}
+      run: echo "This is terraform secret $TEST"
 
