@@ -34,10 +34,11 @@ jobs:
       id: step1
       run: |
         echo "Enviroment value is ${{ vars.MYENVVARIABLE }}" 
-        echo "Passing value" >> "$GITHUB_OUTPUT"
+        GITHUB_OUTPUT=$(echo "Passing value")
 
     - name: running scripts
-      run: ./myscript.sh >> "$GITHUB_OUTPUT"
+      run: |
+        GITHUB_OUTPUT=$(./myscript.sh)
       id: step2
 
     - name: running second script
@@ -48,6 +49,9 @@ jobs:
 
     runs-on: ubuntu-latest
     needs: terraform
+    defaults:
+      run:
+        shell: bash
     steps:
       - env:
           OUTPUT1: ${{needs.terraform.outputs.output1}}
