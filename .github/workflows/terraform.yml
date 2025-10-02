@@ -32,7 +32,7 @@ jobs:
 
     - name: echo evironment variable
       id: step1
-      run: echo "Enviroment value is ${{ vars.MYENVVARIABLE }}" >> $GITHUB_OUTPUT
+      run: echo '"Enviroment value is ${{ vars.MYENVVARIABLE }}"' >> $GITHUB_OUTPUT
 
     - name: running scripts
       run: ./myscript.sh >> $GITHUB_OUTPUT
