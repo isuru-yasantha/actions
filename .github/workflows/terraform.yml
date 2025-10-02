@@ -73,5 +73,5 @@ jobs:
       run: echo "Secret value is ${{ secrets.MYSECRET }}"
 
     - name: echo evironment variable
-      run: echo "Enviroment value is ${{ env.MYENVVARIABLE }}"
+      run: echo "Enviroment value is ${{ var.MYENVVARIABLE }}"
 
