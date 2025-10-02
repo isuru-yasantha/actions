@@ -54,7 +54,7 @@ jobs:
         shell: bash
     steps:
       - env:
-          OUTPUT1: ${{needs.terraform.outputs.output1}}
+          name: ${{needs.terraform.outputs.name}}
           OUTPUT2: ${{needs.terraform.outputs.output2}}
         run: echo "$name $OUTPUT2"
     
