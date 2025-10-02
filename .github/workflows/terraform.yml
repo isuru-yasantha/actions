@@ -108,7 +108,7 @@ jobs:
     # Repository
         repository: gcloudkubectl
     # Docker registry
-   #     registry: hub.docker.com
+        registry: docker.io
     # Docker login
         login: isuruwic
     # Docker password
