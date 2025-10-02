@@ -15,7 +15,7 @@ jobs:
     environment: testsecret
     outputs:
       name: ${{steps.step1.outputs.name}}
-      output2: ${{steps.step2.outputs.test}}
+      value: ${{steps.step2.outputs.value}}
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
@@ -39,6 +39,7 @@ jobs:
     - name: running scripts
       run: |
         ./myscript.sh
+        echo "value=10" >> $GITHUB_OUTPUT
       id: step2
 
     - name: running second script
@@ -55,7 +56,7 @@ jobs:
     steps:
       - env:
           name: ${{needs.terraform.outputs.name}}
-          OUTPUT2: ${{needs.terraform.outputs.output2}}
-        run: echo "$name $OUTPUT2"
+          value: ${{needs.terraform.outputs.value}}
+        run: echo "$name $value"
     
 
