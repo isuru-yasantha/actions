@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: testsecret
     outputs:
-      output1: ${{steps.step1.outputs.test}}
+      name: ${{steps.step1.outputs.name}}
       output2: ${{steps.step2.outputs.test}}
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -34,7 +34,7 @@ jobs:
       id: step1
       run: |
         echo "Enviroment value is ${{ vars.MYENVVARIABLE }}" 
-        echo "Name=Passing-value" >> $GITHUB_OUTPUT
+        echo "name=Passing-value" >> $GITHUB_OUTPUT
 
     - name: running scripts
       run: |
@@ -56,6 +56,6 @@ jobs:
       - env:
           OUTPUT1: ${{needs.terraform.outputs.output1}}
           OUTPUT2: ${{needs.terraform.outputs.output2}}
-        run: echo "$OUTPUT1 $OUTPUT2"
+        run: echo "$name $OUTPUT2"
     
 
