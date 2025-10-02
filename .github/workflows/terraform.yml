@@ -13,7 +13,9 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: testsecret
-
+    outputs:
+      output1: ${{step.step1.outputs.test}}
+      output2: ${{step.step2.outputs.test}}
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
@@ -29,12 +31,25 @@ jobs:
       run: echo "Secret value is ${{ secrets.MYSECRET }}"
 
     - name: echo evironment variable
-      run: echo "Enviroment value is ${{ vars.MYENVVARIABLE }}"
+      id: step1
+      run: echo "Enviroment value is ${{ vars.MYENVVARIABLE }}" >> "$GITHUB_OUTPUT"
 
     - name: running scripts
-      run: ./myscript.sh
+      run: ./myscript.sh >> "$GITHUB_OUTPUT"
+      id: step2
 
     - name: running second script
       working-directory: directory
       run: ./mytestscript.sh
+
+  job2:
+
+    runs-on: ubuntu-latest
+    needs: terraform
+    steps:
+      - env:
+          OUTPUT1: ${{needs.terraform.outputs.output1}}
+          OUTPUT2: ${{needs.terraform.outputs.output2}}
+        run: echo "$OUTPUT1 $OUTPUT2"
+    
 
