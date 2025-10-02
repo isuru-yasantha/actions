@@ -34,7 +34,7 @@ jobs:
       id: step1
       run: |
         echo "Enviroment value is ${{ vars.MYENVVARIABLE }}" 
-        echo "Passing-value" >> $GITHUB_ENV
+        echo "Passing-value" >> $GITHUB_OUTPUT
 
     - name: running scripts
       run: |
